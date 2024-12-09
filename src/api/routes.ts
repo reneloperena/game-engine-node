@@ -1,8 +1,10 @@
 import type { ConnectRouter } from "@connectrpc/connect";
-import { Trivia } from "./gen/service_pb";
-import playTriviaGame from "../business-logic/play-trivia-game";
+import { TriviaService } from "./gen/service_pb";
+import answerQuestion from "../business-logic/answer-question";
+import triviaSignUp from "../business-logic/trivia-sign-up";
 
 export default (router: ConnectRouter) =>
-  router.service(Trivia, {
-    playTriviaGame,
+  router.service(TriviaService, {
+    answerQuestion,
+    triviaSignUp,
   });

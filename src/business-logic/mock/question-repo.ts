@@ -1,17 +1,22 @@
-import {
-  AnswerEnumV1,
-  AnswerMessageV1,
-  QuestionMessageV1,
-  QuestionResultMessageV1,
-} from "../../api/gen/messages_pb";
-import uuid from "uuid";
+import * as uuid from "uuid";
+import { encryptQuestion } from "./question-encryption";
 
 const uuidv4 = uuid.v4;
 
-const questions: Map<
-  string,
-  Omit<QuestionMessageV1, "$typeName"> & { correct: AnswerEnumV1 }
-> = new Map(
+type Answer = "A" | "B" | "C" | "D";
+export type Question = {
+  id: string;
+  question: string;
+  answerA: string;
+  answerB: string;
+  answerC: string;
+  answerD: string;
+  playerCanAnswer: boolean;
+  correct: Answer;
+  startTime: string;
+};
+
+const questions: Map<string, Question> = new Map(
   [
     {
       id: uuidv4(),
@@ -21,7 +26,7 @@ const questions: Map<
       answerC: "Italy",
       answerD: "Argentina",
       playerCanAnswer: true,
-      correct: AnswerEnumV1.A,
+      correct: "A" as Answer,
       startTime: new Date().toISOString(),
     },
     {
@@ -32,7 +37,7 @@ const questions: Map<
       answerC: "Ronaldo",
       answerD: "Pelé",
       playerCanAnswer: true,
-      correct: AnswerEnumV1.B,
+      correct: "B" as Answer,
       startTime: new Date().toISOString(),
     },
 
@@ -43,7 +48,7 @@ const questions: Map<
       answerB: "Uruguay",
       answerC: "Argentina",
       answerD: "Italy",
-      correct: AnswerEnumV1.B,
+      correct: "C" as Answer,
       playerCanAnswer: true,
       startTime: new Date().toISOString(),
     },
@@ -55,7 +60,7 @@ const questions: Map<
       answerB: "Cristiano Ronaldo",
       answerC: "Johan Cruyff",
       answerD: "Michel Platini",
-      correct: AnswerEnumV1.A,
+      correct: "A" as Answer,
       playerCanAnswer: true,
       startTime: new Date().toISOString(),
     },
@@ -68,7 +73,7 @@ const questions: Map<
       answerC: "Barcelona",
       answerD: "Real Madrid",
       playerCanAnswer: true,
-      correct: AnswerEnumV1.D,
+      correct: "D" as Answer,
       startTime: new Date().toISOString(),
     },
     {
@@ -78,7 +83,7 @@ const questions: Map<
       answerB: "Greece",
       answerC: "Italy",
       answerD: "Spain",
-      correct: AnswerEnumV1.B,
+      correct: "B" as Answer,
       playerCanAnswer: true,
       startTime: new Date().toISOString(),
     },
@@ -90,7 +95,7 @@ const questions: Map<
       answerB: "Zinedine Zidane",
       answerC: "Ronaldo Nazário",
       answerD: "Pelé",
-      correct: AnswerEnumV1.C,
+      correct: "C" as Answer,
       playerCanAnswer: true,
       startTime: new Date().toISOString(),
     },
@@ -103,7 +108,7 @@ const questions: Map<
       answerB: "Senegal",
       answerC: "Cameroon",
       answerD: "South Africa",
-      correct: AnswerEnumV1.C,
+      correct: "C" as Answer,
       playerCanAnswer: true,
       startTime: new Date().toISOString(),
     },
@@ -115,7 +120,7 @@ const questions: Map<
       answerB: "Sergio Agüero",
       answerC: "Alan Shearer",
       answerD: "Thierry Henry",
-      correct: AnswerEnumV1.C,
+      correct: "C" as Answer,
       playerCanAnswer: true,
       startTime: new Date().toISOString(),
     },
@@ -123,46 +128,21 @@ const questions: Map<
 );
 
 const questionRepository = () => {
-  const getResults = (
-    id: string,
-    answer: AnswerEnumV1 | null
-  ): QuestionResultMessageV1 => {
-    const question = questions.get(id);
-    if (!question) throw Error("404");
-
-    const result: QuestionResultMessageV1 = {
-      $typeName: "com.breaktrivia.messages.v1.QuestionResultMessageV1",
-      questionId: id,
-      question: question.question,
-      answerA: question.answerA,
-      totalAnswerA: Math.floor(Math.random() * 100),
-      answerB: question.answerB,
-      totalAnswerB: Math.floor(Math.random() * 100),
-      answerC: question.answerC,
-      totalAnswerC: Math.floor(Math.random() * 100),
-      answerD: question.answerD,
-      totalAnswerD: Math.floor(Math.random() * 100),
-      correct: question.correct,
-      yourAnswer: answer || undefined,
-      startTime: question.startTime,
-      endTime: new Date().toISOString(),
-    };
-
-    return result;
-  };
-
-  const getRandomQuestion = (): QuestionMessageV1 => {
+  const getRandomQuestion = async (): Promise<{
+    nextQuestion: string;
+    iv: string;
+  }> => {
     const values = Array.from(questions.values());
-    const question: QuestionMessageV1 = {
-      $typeName: "com.breaktrivia.messages.v1.QuestionMessageV1",
+    const question: Question = {
       ...values[Math.floor(Math.random() * values.length)],
     };
 
-    return question;
+    const { encryptedData, iv } = await encryptQuestion(question);
+    console.log(iv);
+    return { nextQuestion: encryptedData, iv };
   };
 
   return {
-    getResults,
     getRandomQuestion,
   };
 };

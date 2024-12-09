@@ -4,6 +4,7 @@ import "messages.proto";
 
 package services.breaktrivia.v1;
 
-service Trivia {
-  rpc PlayTriviaGame (stream com.breaktrivia.messages.v1.ClientMessage) returns (stream com.breaktrivia.messages.v1.ServerMessage);
+service TriviaService {
+  rpc triviaSignUp (com.breaktrivia.messages.v1.TriviaSignUpRequest) returns (com.breaktrivia.messages.v1.TriviaSignUpResponse);
+  rpc answerQuestion (com.breaktrivia.messages.v1.AnswerQuestionRequest) returns (com.breaktrivia.messages.v1.AnswerQuestionResponse);
 }

@@ -2,613 +2,140 @@
 // @generated from file messages.proto (package com.breaktrivia.messages.v1, syntax proto3)
 /* eslint-disable */
 
-import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
-import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
+import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file messages.proto.
  */
 export const file_messages: GenFile = /*@__PURE__*/
-  fileDesc("Cg5tZXNzYWdlcy5wcm90bxIbY29tLmJyZWFrdHJpdmlhLm1lc3NhZ2VzLnYxIjwKCEN1cnJlbmN5Eg4KBmFtb3VudBgBIAEoARIOCgZzeW1ib2wYAiABKAkSEAoIY3VycmVuY3kYAyABKAkiLgoOU3RhdHNNZXNzYWdlVjESHAoUYWN0aXZlX3BsYXllcnNfY291bnQYASABKA0ihwEKElN0YXJ0R2FtZU1lc3NhZ2VWMRI1Cgd2ZXJzaW9uGAEgASgOMiQuY29tLmJyZWFrdHJpdmlhLm1lc3NhZ2VzLnYxLlZlcnNpb24SOgoLdG90YWxfcHJpemUYAiABKAsyJS5jb20uYnJlYWt0cml2aWEubWVzc2FnZXMudjEuQ3VycmVuY3kipgEKEVF1ZXN0aW9uTWVzc2FnZVYxEgoKAmlkGAEgASgJEhAKCHF1ZXN0aW9uGAIgASgJEhAKCGFuc3dlcl9hGAMgASgJEhAKCGFuc3dlcl9iGAQgASgJEhAKCGFuc3dlcl9jGAUgASgJEhAKCGFuc3dlcl9kGAYgASgJEhcKD3BsYXllckNhbkFuc3dlchgHIAEoCBISCgpzdGFydF90aW1lGAggASgJImEKD0Fuc3dlck1lc3NhZ2VWMRITCgtxdWVzdGlvbl9pZBgBIAEoCRI5CgZhbnN3ZXIYAiABKA4yKS5jb20uYnJlYWt0cml2aWEubWVzc2FnZXMudjEuQW5zd2VyRW51bVYxIp8DChdRdWVzdGlvblJlc3VsdE1lc3NhZ2VWMRITCgtxdWVzdGlvbl9pZBgBIAEoCRIQCghxdWVzdGlvbhgCIAEoCRIQCghhbnN3ZXJfYRgDIAEoCRIWCg50b3RhbF9hbnN3ZXJfYRgEIAEoDRIQCghhbnN3ZXJfYhgFIAEoCRIWCg50b3RhbF9hbnN3ZXJfYhgGIAEoDRIQCghhbnN3ZXJfYxgHIAEoCRIWCg50b3RhbF9hbnN3ZXJfYxgIIAEoDRIQCghhbnN3ZXJfZBgJIAEoCRIWCg50b3RhbF9hbnN3ZXJfZBgKIAEoDRJDCgt5b3VyX2Fuc3dlchgLIAEoDjIpLmNvbS5icmVha3RyaXZpYS5tZXNzYWdlcy52MS5BbnN3ZXJFbnVtVjFIAIgBARI6Cgdjb3JyZWN0GAwgASgOMikuY29tLmJyZWFrdHJpdmlhLm1lc3NhZ2VzLnYxLkFuc3dlckVudW1WMRISCgpzdGFydF90aW1lGA0gASgJEhAKCGVuZF90aW1lGA4gASgJQg4KDF95b3VyX2Fuc3dlciJ2Cg9XaW5uZXJNZXNzYWdlVjESCgoCaWQYASABKAkSEAoIdXNlcm5hbWUYAiABKAkSDgoGYXZhdGFyGAMgASgJEjUKBmFtb3VudBgEIAEoCzIlLmNvbS5icmVha3RyaXZpYS5tZXNzYWdlcy52MS5DdXJyZW5jeSJXChZUcml2aWFSZXN1bHRzTWVzc2FnZVYxEj0KB3dpbm5lcnMYASADKAsyLC5jb20uYnJlYWt0cml2aWEubWVzc2FnZXMudjEuV2lubmVyTWVzc2FnZVYxIpoBCg1DbGllbnRNZXNzYWdlEjwKBmFuc3dlchgBIAEoCzIqLmNvbS5icmVha3RyaXZpYS5tZXNzYWdlcy52MS5BbnN3ZXJNZXNzYWdlSAASQAoMcXVlc3Rpb25fY3VlGAIgASgLMiguY29tLmJyZWFrdHJpdmlhLm1lc3NhZ2VzLnYxLlF1ZXN0aW9uQ3VlSABCCQoHbWVzc2FnZSKFAQoNQW5zd2VyTWVzc2FnZRI1Cgd2ZXJzaW9uGAEgASgOMiQuY29tLmJyZWFrdHJpdmlhLm1lc3NhZ2VzLnYxLlZlcnNpb24SPQoHcGF5bG9hZBgCIAEoCzIsLmNvbS5icmVha3RyaXZpYS5tZXNzYWdlcy52MS5BbnN3ZXJNZXNzYWdlVjEiRAoLUXVlc3Rpb25DdWUSNQoHdmVyc2lvbhgBIAEoDjIkLmNvbS5icmVha3RyaXZpYS5tZXNzYWdlcy52MS5WZXJzaW9uIpsDCg1TZXJ2ZXJNZXNzYWdlEjMKBXN0YXRzGAEgASgLMiIuY29tLmJyZWFrdHJpdmlhLm1lc3NhZ2VzLnYxLlN0YXRzSAASOQoIcXVlc3Rpb24YAiABKAsyJS5jb20uYnJlYWt0cml2aWEubWVzc2FnZXMudjEuUXVlc3Rpb25IABJGCg9xdWVzdGlvbl9yZXN1bHQYAyABKAsyKy5jb20uYnJlYWt0cml2aWEubWVzc2FnZXMudjEuUXVlc3Rpb25SZXN1bHRIABJKChFwbGF5ZXJfZWxpbWluYXRlZBgEIAEoCzItLmNvbS5icmVha3RyaXZpYS5tZXNzYWdlcy52MS5QbGF5ZXJFbGltaW5hdGVkSAASRAoOdHJpdmlhX3Jlc3VsdHMYBSABKAsyKi5jb20uYnJlYWt0cml2aWEubWVzc2FnZXMudjEuVHJpdmlhUmVzdWx0c0gAEjUKBndpbm5lchgGIAEoCzIjLmNvbS5icmVha3RyaXZpYS5tZXNzYWdlcy52MS5XaW5uZXJIAEIJCgdtZXNzYWdlInwKBVN0YXRzEjUKB3ZlcnNpb24YASABKA4yJC5jb20uYnJlYWt0cml2aWEubWVzc2FnZXMudjEuVmVyc2lvbhI8CgdwYXlsb2FkGAIgASgLMisuY29tLmJyZWFrdHJpdmlhLm1lc3NhZ2VzLnYxLlN0YXRzTWVzc2FnZVYxIoIBCghRdWVzdGlvbhI1Cgd2ZXJzaW9uGAEgASgOMiQuY29tLmJyZWFrdHJpdmlhLm1lc3NhZ2VzLnYxLlZlcnNpb24SPwoHcGF5bG9hZBgCIAEoCzIuLmNvbS5icmVha3RyaXZpYS5tZXNzYWdlcy52MS5RdWVzdGlvbk1lc3NhZ2VWMSKOAQoOUXVlc3Rpb25SZXN1bHQSNQoHdmVyc2lvbhgBIAEoDjIkLmNvbS5icmVha3RyaXZpYS5tZXNzYWdlcy52MS5WZXJzaW9uEkUKB3BheWxvYWQYAiABKAsyNC5jb20uYnJlYWt0cml2aWEubWVzc2FnZXMudjEuUXVlc3Rpb25SZXN1bHRNZXNzYWdlVjEiSQoQUGxheWVyRWxpbWluYXRlZBI1Cgd2ZXJzaW9uGAEgASgOMiQuY29tLmJyZWFrdHJpdmlhLm1lc3NhZ2VzLnYxLlZlcnNpb24ijAEKDVRyaXZpYVJlc3VsdHMSNQoHdmVyc2lvbhgBIAEoDjIkLmNvbS5icmVha3RyaXZpYS5tZXNzYWdlcy52MS5WZXJzaW9uEkQKB3BheWxvYWQYAiABKAsyMy5jb20uYnJlYWt0cml2aWEubWVzc2FnZXMudjEuVHJpdmlhUmVzdWx0c01lc3NhZ2VWMSJ+CgZXaW5uZXISNQoHdmVyc2lvbhgBIAEoDjIkLmNvbS5icmVha3RyaXZpYS5tZXNzYWdlcy52MS5WZXJzaW9uEj0KB3BheWxvYWQYAiABKAsyLC5jb20uYnJlYWt0cml2aWEubWVzc2FnZXMudjEuV2lubmVyTWVzc2FnZVYxKhMKB1ZlcnNpb24SCAoEVjFfMBAAKioKDEFuc3dlckVudW1WMRIFCgFBEAASBQoBQhABEgUKAUMQAhIFCgFEEANCvwEKH2NvbS5jb20uYnJlYWt0cml2aWEubWVzc2FnZXMudjFCDU1lc3NhZ2VzUHJvdG9QAaICA0NCTaoCG0NvbS5CcmVha3RyaXZpYS5NZXNzYWdlcy5WMcoCG0NvbVxCcmVha3RyaXZpYVxNZXNzYWdlc1xWMeICJ0NvbVxCcmVha3RyaXZpYVxNZXNzYWdlc1xWMVxHUEJNZXRhZGF0YeoCHkNvbTo6QnJlYWt0cml2aWE6Ok1lc3NhZ2VzOjpWMWIGcHJvdG8z");
+  fileDesc("Cg5tZXNzYWdlcy5wcm90bxIbY29tLmJyZWFrdHJpdmlhLm1lc3NhZ2VzLnYxIiYKE1RyaXZpYVNpZ25VcFJlcXVlc3QSDwoHZ2FtZV9pZBgBIAEoCSJwChRUcml2aWFTaWduVXBSZXNwb25zZRISCgpnYW1lX3N0YXRlGAEgASgJEhoKDW5leHRfcXVlc3Rpb24YAiABKAlIAIgBARIPCgJpdhgDIAEoCUgBiAEBQhAKDl9uZXh0X3F1ZXN0aW9uQgUKA19pdiJhChVBbnN3ZXJRdWVzdGlvblJlcXVlc3QSDwoHZ2FtZV9pZBgBIAEoCRISCgpnYW1lX3N0YXRlGAIgASgJEhMKC3F1ZXN0aW9uX2lkGAMgASgJEg4KBmFuc3dlchgEIAEoCSJyChZBbnN3ZXJRdWVzdGlvblJlc3BvbnNlEhIKCmdhbWVfc3RhdGUYASABKAkSGgoNbmV4dF9xdWVzdGlvbhgCIAEoCUgAiAEBEg8KAml2GAMgASgJSAGIAQFCEAoOX25leHRfcXVlc3Rpb25CBQoDX2l2Qr8BCh9jb20uY29tLmJyZWFrdHJpdmlhLm1lc3NhZ2VzLnYxQg1NZXNzYWdlc1Byb3RvUAGiAgNDQk2qAhtDb20uQnJlYWt0cml2aWEuTWVzc2FnZXMuVjHKAhtDb21cQnJlYWt0cml2aWFcTWVzc2FnZXNcVjHiAidDb21cQnJlYWt0cml2aWFcTWVzc2FnZXNcVjFcR1BCTWV0YWRhdGHqAh5Db206OkJyZWFrdHJpdmlhOjpNZXNzYWdlczo6VjFiBnByb3RvMw");
 
 /**
- * Currency Message
+ * Message Definitions
  *
- * @generated from message com.breaktrivia.messages.v1.Currency
+ * @generated from message com.breaktrivia.messages.v1.TriviaSignUpRequest
  */
-export type Currency = Message<"com.breaktrivia.messages.v1.Currency"> & {
+export type TriviaSignUpRequest = Message<"com.breaktrivia.messages.v1.TriviaSignUpRequest"> & {
   /**
-   * @generated from field: double amount = 1;
+   * Unique game session identifier
+   *
+   * @generated from field: string game_id = 1;
    */
-  amount: number;
-
-  /**
-   * @generated from field: string symbol = 2;
-   */
-  symbol: string;
-
-  /**
-   * @generated from field: string currency = 3;
-   */
-  currency: string;
+  gameId: string;
 };
 
 /**
- * Describes the message com.breaktrivia.messages.v1.Currency.
- * Use `create(CurrencySchema)` to create a new message.
+ * Describes the message com.breaktrivia.messages.v1.TriviaSignUpRequest.
+ * Use `create(TriviaSignUpRequestSchema)` to create a new message.
  */
-export const CurrencySchema: GenMessage<Currency> = /*@__PURE__*/
+export const TriviaSignUpRequestSchema: GenMessage<TriviaSignUpRequest> = /*@__PURE__*/
   messageDesc(file_messages, 0);
 
 /**
- * StatsMessageV1
- *
- * @generated from message com.breaktrivia.messages.v1.StatsMessageV1
+ * @generated from message com.breaktrivia.messages.v1.TriviaSignUpResponse
  */
-export type StatsMessageV1 = Message<"com.breaktrivia.messages.v1.StatsMessageV1"> & {
+export type TriviaSignUpResponse = Message<"com.breaktrivia.messages.v1.TriviaSignUpResponse"> & {
   /**
-   * @generated from field: uint32 active_players_count = 1;
+   * JWT containing the initial game state
+   *
+   * @generated from field: string game_state = 1;
    */
-  activePlayersCount: number;
+  gameState: string;
+
+  /**
+   * Encrypted next question payload (optional)
+   *
+   * @generated from field: optional string next_question = 2;
+   */
+  nextQuestion?: string;
+
+  /**
+   * Initialization Vector (IV) for decryption (optional)
+   *
+   * @generated from field: optional string iv = 3;
+   */
+  iv?: string;
 };
 
 /**
- * Describes the message com.breaktrivia.messages.v1.StatsMessageV1.
- * Use `create(StatsMessageV1Schema)` to create a new message.
+ * Describes the message com.breaktrivia.messages.v1.TriviaSignUpResponse.
+ * Use `create(TriviaSignUpResponseSchema)` to create a new message.
  */
-export const StatsMessageV1Schema: GenMessage<StatsMessageV1> = /*@__PURE__*/
+export const TriviaSignUpResponseSchema: GenMessage<TriviaSignUpResponse> = /*@__PURE__*/
   messageDesc(file_messages, 1);
 
 /**
- * StartGameMessageV1
- *
- * @generated from message com.breaktrivia.messages.v1.StartGameMessageV1
+ * @generated from message com.breaktrivia.messages.v1.AnswerQuestionRequest
  */
-export type StartGameMessageV1 = Message<"com.breaktrivia.messages.v1.StartGameMessageV1"> & {
+export type AnswerQuestionRequest = Message<"com.breaktrivia.messages.v1.AnswerQuestionRequest"> & {
   /**
-   * @generated from field: com.breaktrivia.messages.v1.Version version = 1;
+   * Unique game session identifier
+   *
+   * @generated from field: string game_id = 1;
    */
-  version: Version;
+  gameId: string;
 
   /**
-   * @generated from field: com.breaktrivia.messages.v1.Currency total_prize = 2;
+   * JWT containing the user's current game state
+   *
+   * @generated from field: string game_state = 2;
    */
-  totalPrize?: Currency;
+  gameState: string;
+
+  /**
+   * Unique question identifier
+   *
+   * @generated from field: string question_id = 3;
+   */
+  questionId: string;
+
+  /**
+   * User's selected answer
+   *
+   * @generated from field: string answer = 4;
+   */
+  answer: string;
 };
 
 /**
- * Describes the message com.breaktrivia.messages.v1.StartGameMessageV1.
- * Use `create(StartGameMessageV1Schema)` to create a new message.
+ * Describes the message com.breaktrivia.messages.v1.AnswerQuestionRequest.
+ * Use `create(AnswerQuestionRequestSchema)` to create a new message.
  */
-export const StartGameMessageV1Schema: GenMessage<StartGameMessageV1> = /*@__PURE__*/
+export const AnswerQuestionRequestSchema: GenMessage<AnswerQuestionRequest> = /*@__PURE__*/
   messageDesc(file_messages, 2);
 
 /**
- * QuestionMessageV1
- *
- * @generated from message com.breaktrivia.messages.v1.QuestionMessageV1
+ * @generated from message com.breaktrivia.messages.v1.AnswerQuestionResponse
  */
-export type QuestionMessageV1 = Message<"com.breaktrivia.messages.v1.QuestionMessageV1"> & {
+export type AnswerQuestionResponse = Message<"com.breaktrivia.messages.v1.AnswerQuestionResponse"> & {
   /**
-   * @generated from field: string id = 1;
-   */
-  id: string;
-
-  /**
-   * @generated from field: string question = 2;
-   */
-  question: string;
-
-  /**
-   * @generated from field: string answer_a = 3;
-   */
-  answerA: string;
-
-  /**
-   * @generated from field: string answer_b = 4;
-   */
-  answerB: string;
-
-  /**
-   * @generated from field: string answer_c = 5;
-   */
-  answerC: string;
-
-  /**
-   * @generated from field: string answer_d = 6;
-   */
-  answerD: string;
-
-  /**
-   * @generated from field: bool playerCanAnswer = 7;
-   */
-  playerCanAnswer: boolean;
-
-  /**
-   * ISODate as a string
+   * Updated JWT containing the new game state
    *
-   * @generated from field: string start_time = 8;
+   * @generated from field: string game_state = 1;
    */
-  startTime: string;
+  gameState: string;
+
+  /**
+   * Encrypted next question payload (optional)
+   *
+   * @generated from field: optional string next_question = 2;
+   */
+  nextQuestion?: string;
+
+  /**
+   * Initialization Vector (IV) for decryption (optional) 
+   *
+   * @generated from field: optional string iv = 3;
+   */
+  iv?: string;
 };
 
 /**
- * Describes the message com.breaktrivia.messages.v1.QuestionMessageV1.
- * Use `create(QuestionMessageV1Schema)` to create a new message.
+ * Describes the message com.breaktrivia.messages.v1.AnswerQuestionResponse.
+ * Use `create(AnswerQuestionResponseSchema)` to create a new message.
  */
-export const QuestionMessageV1Schema: GenMessage<QuestionMessageV1> = /*@__PURE__*/
+export const AnswerQuestionResponseSchema: GenMessage<AnswerQuestionResponse> = /*@__PURE__*/
   messageDesc(file_messages, 3);
-
-/**
- * AnswerMessageV1
- *
- * @generated from message com.breaktrivia.messages.v1.AnswerMessageV1
- */
-export type AnswerMessageV1 = Message<"com.breaktrivia.messages.v1.AnswerMessageV1"> & {
-  /**
-   * @generated from field: string question_id = 1;
-   */
-  questionId: string;
-
-  /**
-   * @generated from field: com.breaktrivia.messages.v1.AnswerEnumV1 answer = 2;
-   */
-  answer: AnswerEnumV1;
-};
-
-/**
- * Describes the message com.breaktrivia.messages.v1.AnswerMessageV1.
- * Use `create(AnswerMessageV1Schema)` to create a new message.
- */
-export const AnswerMessageV1Schema: GenMessage<AnswerMessageV1> = /*@__PURE__*/
-  messageDesc(file_messages, 4);
-
-/**
- * QuestionResultMessageV1
- *
- * @generated from message com.breaktrivia.messages.v1.QuestionResultMessageV1
- */
-export type QuestionResultMessageV1 = Message<"com.breaktrivia.messages.v1.QuestionResultMessageV1"> & {
-  /**
-   * @generated from field: string question_id = 1;
-   */
-  questionId: string;
-
-  /**
-   * @generated from field: string question = 2;
-   */
-  question: string;
-
-  /**
-   * @generated from field: string answer_a = 3;
-   */
-  answerA: string;
-
-  /**
-   * @generated from field: uint32 total_answer_a = 4;
-   */
-  totalAnswerA: number;
-
-  /**
-   * @generated from field: string answer_b = 5;
-   */
-  answerB: string;
-
-  /**
-   * @generated from field: uint32 total_answer_b = 6;
-   */
-  totalAnswerB: number;
-
-  /**
-   * @generated from field: string answer_c = 7;
-   */
-  answerC: string;
-
-  /**
-   * @generated from field: uint32 total_answer_c = 8;
-   */
-  totalAnswerC: number;
-
-  /**
-   * @generated from field: string answer_d = 9;
-   */
-  answerD: string;
-
-  /**
-   * @generated from field: uint32 total_answer_d = 10;
-   */
-  totalAnswerD: number;
-
-  /**
-   * Use optional in implementation
-   *
-   * @generated from field: optional com.breaktrivia.messages.v1.AnswerEnumV1 your_answer = 11;
-   */
-  yourAnswer?: AnswerEnumV1;
-
-  /**
-   * @generated from field: com.breaktrivia.messages.v1.AnswerEnumV1 correct = 12;
-   */
-  correct: AnswerEnumV1;
-
-  /**
-   * ISODate as a string
-   *
-   * @generated from field: string start_time = 13;
-   */
-  startTime: string;
-
-  /**
-   * ISODate as a string
-   *
-   * @generated from field: string end_time = 14;
-   */
-  endTime: string;
-};
-
-/**
- * Describes the message com.breaktrivia.messages.v1.QuestionResultMessageV1.
- * Use `create(QuestionResultMessageV1Schema)` to create a new message.
- */
-export const QuestionResultMessageV1Schema: GenMessage<QuestionResultMessageV1> = /*@__PURE__*/
-  messageDesc(file_messages, 5);
-
-/**
- * WinnerMessageV1
- *
- * @generated from message com.breaktrivia.messages.v1.WinnerMessageV1
- */
-export type WinnerMessageV1 = Message<"com.breaktrivia.messages.v1.WinnerMessageV1"> & {
-  /**
-   * @generated from field: string id = 1;
-   */
-  id: string;
-
-  /**
-   * @generated from field: string username = 2;
-   */
-  username: string;
-
-  /**
-   * URL as a string
-   *
-   * @generated from field: string avatar = 3;
-   */
-  avatar: string;
-
-  /**
-   * @generated from field: com.breaktrivia.messages.v1.Currency amount = 4;
-   */
-  amount?: Currency;
-};
-
-/**
- * Describes the message com.breaktrivia.messages.v1.WinnerMessageV1.
- * Use `create(WinnerMessageV1Schema)` to create a new message.
- */
-export const WinnerMessageV1Schema: GenMessage<WinnerMessageV1> = /*@__PURE__*/
-  messageDesc(file_messages, 6);
-
-/**
- * TriviaResultsMessageV1
- *
- * @generated from message com.breaktrivia.messages.v1.TriviaResultsMessageV1
- */
-export type TriviaResultsMessageV1 = Message<"com.breaktrivia.messages.v1.TriviaResultsMessageV1"> & {
-  /**
-   * @generated from field: repeated com.breaktrivia.messages.v1.WinnerMessageV1 winners = 1;
-   */
-  winners: WinnerMessageV1[];
-};
-
-/**
- * Describes the message com.breaktrivia.messages.v1.TriviaResultsMessageV1.
- * Use `create(TriviaResultsMessageV1Schema)` to create a new message.
- */
-export const TriviaResultsMessageV1Schema: GenMessage<TriviaResultsMessageV1> = /*@__PURE__*/
-  messageDesc(file_messages, 7);
-
-/**
- * ClientMessage
- *
- * @generated from message com.breaktrivia.messages.v1.ClientMessage
- */
-export type ClientMessage = Message<"com.breaktrivia.messages.v1.ClientMessage"> & {
-  /**
-   * @generated from oneof com.breaktrivia.messages.v1.ClientMessage.message
-   */
-  message: {
-    /**
-     * @generated from field: com.breaktrivia.messages.v1.AnswerMessage answer = 1;
-     */
-    value: AnswerMessage;
-    case: "answer";
-  } | {
-    /**
-     * @generated from field: com.breaktrivia.messages.v1.QuestionCue question_cue = 2;
-     */
-    value: QuestionCue;
-    case: "questionCue";
-  } | { case: undefined; value?: undefined };
-};
-
-/**
- * Describes the message com.breaktrivia.messages.v1.ClientMessage.
- * Use `create(ClientMessageSchema)` to create a new message.
- */
-export const ClientMessageSchema: GenMessage<ClientMessage> = /*@__PURE__*/
-  messageDesc(file_messages, 8);
-
-/**
- * @generated from message com.breaktrivia.messages.v1.AnswerMessage
- */
-export type AnswerMessage = Message<"com.breaktrivia.messages.v1.AnswerMessage"> & {
-  /**
-   * @generated from field: com.breaktrivia.messages.v1.Version version = 1;
-   */
-  version: Version;
-
-  /**
-   * @generated from field: com.breaktrivia.messages.v1.AnswerMessageV1 payload = 2;
-   */
-  payload?: AnswerMessageV1;
-};
-
-/**
- * Describes the message com.breaktrivia.messages.v1.AnswerMessage.
- * Use `create(AnswerMessageSchema)` to create a new message.
- */
-export const AnswerMessageSchema: GenMessage<AnswerMessage> = /*@__PURE__*/
-  messageDesc(file_messages, 9);
-
-/**
- * @generated from message com.breaktrivia.messages.v1.QuestionCue
- */
-export type QuestionCue = Message<"com.breaktrivia.messages.v1.QuestionCue"> & {
-  /**
-   * @generated from field: com.breaktrivia.messages.v1.Version version = 1;
-   */
-  version: Version;
-};
-
-/**
- * Describes the message com.breaktrivia.messages.v1.QuestionCue.
- * Use `create(QuestionCueSchema)` to create a new message.
- */
-export const QuestionCueSchema: GenMessage<QuestionCue> = /*@__PURE__*/
-  messageDesc(file_messages, 10);
-
-/**
- * ServerMessage
- *
- * @generated from message com.breaktrivia.messages.v1.ServerMessage
- */
-export type ServerMessage = Message<"com.breaktrivia.messages.v1.ServerMessage"> & {
-  /**
-   * @generated from oneof com.breaktrivia.messages.v1.ServerMessage.message
-   */
-  message: {
-    /**
-     * @generated from field: com.breaktrivia.messages.v1.Stats stats = 1;
-     */
-    value: Stats;
-    case: "stats";
-  } | {
-    /**
-     * @generated from field: com.breaktrivia.messages.v1.Question question = 2;
-     */
-    value: Question;
-    case: "question";
-  } | {
-    /**
-     * @generated from field: com.breaktrivia.messages.v1.QuestionResult question_result = 3;
-     */
-    value: QuestionResult;
-    case: "questionResult";
-  } | {
-    /**
-     * @generated from field: com.breaktrivia.messages.v1.PlayerEliminated player_eliminated = 4;
-     */
-    value: PlayerEliminated;
-    case: "playerEliminated";
-  } | {
-    /**
-     * @generated from field: com.breaktrivia.messages.v1.TriviaResults trivia_results = 5;
-     */
-    value: TriviaResults;
-    case: "triviaResults";
-  } | {
-    /**
-     * @generated from field: com.breaktrivia.messages.v1.Winner winner = 6;
-     */
-    value: Winner;
-    case: "winner";
-  } | { case: undefined; value?: undefined };
-};
-
-/**
- * Describes the message com.breaktrivia.messages.v1.ServerMessage.
- * Use `create(ServerMessageSchema)` to create a new message.
- */
-export const ServerMessageSchema: GenMessage<ServerMessage> = /*@__PURE__*/
-  messageDesc(file_messages, 11);
-
-/**
- * @generated from message com.breaktrivia.messages.v1.Stats
- */
-export type Stats = Message<"com.breaktrivia.messages.v1.Stats"> & {
-  /**
-   * @generated from field: com.breaktrivia.messages.v1.Version version = 1;
-   */
-  version: Version;
-
-  /**
-   * @generated from field: com.breaktrivia.messages.v1.StatsMessageV1 payload = 2;
-   */
-  payload?: StatsMessageV1;
-};
-
-/**
- * Describes the message com.breaktrivia.messages.v1.Stats.
- * Use `create(StatsSchema)` to create a new message.
- */
-export const StatsSchema: GenMessage<Stats> = /*@__PURE__*/
-  messageDesc(file_messages, 12);
-
-/**
- * @generated from message com.breaktrivia.messages.v1.Question
- */
-export type Question = Message<"com.breaktrivia.messages.v1.Question"> & {
-  /**
-   * @generated from field: com.breaktrivia.messages.v1.Version version = 1;
-   */
-  version: Version;
-
-  /**
-   * @generated from field: com.breaktrivia.messages.v1.QuestionMessageV1 payload = 2;
-   */
-  payload?: QuestionMessageV1;
-};
-
-/**
- * Describes the message com.breaktrivia.messages.v1.Question.
- * Use `create(QuestionSchema)` to create a new message.
- */
-export const QuestionSchema: GenMessage<Question> = /*@__PURE__*/
-  messageDesc(file_messages, 13);
-
-/**
- * @generated from message com.breaktrivia.messages.v1.QuestionResult
- */
-export type QuestionResult = Message<"com.breaktrivia.messages.v1.QuestionResult"> & {
-  /**
-   * @generated from field: com.breaktrivia.messages.v1.Version version = 1;
-   */
-  version: Version;
-
-  /**
-   * @generated from field: com.breaktrivia.messages.v1.QuestionResultMessageV1 payload = 2;
-   */
-  payload?: QuestionResultMessageV1;
-};
-
-/**
- * Describes the message com.breaktrivia.messages.v1.QuestionResult.
- * Use `create(QuestionResultSchema)` to create a new message.
- */
-export const QuestionResultSchema: GenMessage<QuestionResult> = /*@__PURE__*/
-  messageDesc(file_messages, 14);
-
-/**
- * @generated from message com.breaktrivia.messages.v1.PlayerEliminated
- */
-export type PlayerEliminated = Message<"com.breaktrivia.messages.v1.PlayerEliminated"> & {
-  /**
-   * @generated from field: com.breaktrivia.messages.v1.Version version = 1;
-   */
-  version: Version;
-};
-
-/**
- * Describes the message com.breaktrivia.messages.v1.PlayerEliminated.
- * Use `create(PlayerEliminatedSchema)` to create a new message.
- */
-export const PlayerEliminatedSchema: GenMessage<PlayerEliminated> = /*@__PURE__*/
-  messageDesc(file_messages, 15);
-
-/**
- * @generated from message com.breaktrivia.messages.v1.TriviaResults
- */
-export type TriviaResults = Message<"com.breaktrivia.messages.v1.TriviaResults"> & {
-  /**
-   * @generated from field: com.breaktrivia.messages.v1.Version version = 1;
-   */
-  version: Version;
-
-  /**
-   * @generated from field: com.breaktrivia.messages.v1.TriviaResultsMessageV1 payload = 2;
-   */
-  payload?: TriviaResultsMessageV1;
-};
-
-/**
- * Describes the message com.breaktrivia.messages.v1.TriviaResults.
- * Use `create(TriviaResultsSchema)` to create a new message.
- */
-export const TriviaResultsSchema: GenMessage<TriviaResults> = /*@__PURE__*/
-  messageDesc(file_messages, 16);
-
-/**
- * @generated from message com.breaktrivia.messages.v1.Winner
- */
-export type Winner = Message<"com.breaktrivia.messages.v1.Winner"> & {
-  /**
-   * @generated from field: com.breaktrivia.messages.v1.Version version = 1;
-   */
-  version: Version;
-
-  /**
-   * @generated from field: com.breaktrivia.messages.v1.WinnerMessageV1 payload = 2;
-   */
-  payload?: WinnerMessageV1;
-};
-
-/**
- * Describes the message com.breaktrivia.messages.v1.Winner.
- * Use `create(WinnerSchema)` to create a new message.
- */
-export const WinnerSchema: GenMessage<Winner> = /*@__PURE__*/
-  messageDesc(file_messages, 17);
-
-/**
- * Version Enum
- *
- * @generated from enum com.breaktrivia.messages.v1.Version
- */
-export enum Version {
-  /**
-   * @generated from enum value: V1_0 = 0;
-   */
-  V1_0 = 0,
-}
-
-/**
- * Describes the enum com.breaktrivia.messages.v1.Version.
- */
-export const VersionSchema: GenEnum<Version> = /*@__PURE__*/
-  enumDesc(file_messages, 0);
-
-/**
- * AnswerEnumV1
- *
- * @generated from enum com.breaktrivia.messages.v1.AnswerEnumV1
- */
-export enum AnswerEnumV1 {
-  /**
-   * @generated from enum value: A = 0;
-   */
-  A = 0,
-
-  /**
-   * @generated from enum value: B = 1;
-   */
-  B = 1,
-
-  /**
-   * @generated from enum value: C = 2;
-   */
-  C = 2,
-
-  /**
-   * @generated from enum value: D = 3;
-   */
-  D = 3,
-}
-
-/**
- * Describes the enum com.breaktrivia.messages.v1.AnswerEnumV1.
- */
-export const AnswerEnumV1Schema: GenEnum<AnswerEnumV1> = /*@__PURE__*/
-  enumDesc(file_messages, 1);
 
