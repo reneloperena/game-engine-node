@@ -1,0 +1,144 @@
+syntax = "proto3";
+
+package com.breaktrivia.messages.v1;
+
+// Version Enum
+enum Version {
+  V1_0 = 0;
+}
+
+// ISODate and URL as string type aliases
+// Protobuf doesn't support type aliases directly, so we use string where necessary.
+
+// Currency Message
+message Currency {
+  double amount = 1;
+  string symbol = 2;
+  string currency = 3;
+}
+
+// StatsMessageV1
+message StatsMessageV1 {
+  uint32 active_players_count = 1;
+}
+
+// StartGameMessageV1
+message StartGameMessageV1 {
+  Version version = 1;
+  Currency total_prize = 2;
+}
+
+// QuestionMessageV1
+message QuestionMessageV1 {
+  string id = 1;
+  string question = 2;
+  string answer_a = 3;
+  string answer_b = 4;
+  string answer_c = 5;
+  string answer_d = 6;
+  bool playerCanAnswer = 7;
+  string start_time = 8; // ISODate as a string
+}
+
+// AnswerEnumV1
+enum AnswerEnumV1 {
+  A = 0;
+  B = 1;
+  C = 2;
+  D = 3;
+}
+
+// AnswerMessageV1
+message AnswerMessageV1 {
+  string question_id = 1;
+  AnswerEnumV1 answer = 2;
+}
+
+// QuestionResultMessageV1
+message QuestionResultMessageV1 {
+  string question_id = 1;
+  string question = 2;
+  string answer_a = 3;
+  uint32 total_answer_a = 4;
+  string answer_b = 5;
+  uint32 total_answer_b = 6;
+  string answer_c = 7;
+  uint32 total_answer_c = 8;
+  string answer_d = 9;
+  uint32 total_answer_d = 10;
+  optional AnswerEnumV1 your_answer = 11; // Use optional in implementation
+  AnswerEnumV1 correct = 12;
+  string start_time = 13; // ISODate as a string
+  string end_time = 14;   // ISODate as a string
+}
+
+// WinnerMessageV1
+message WinnerMessageV1 {
+  string id = 1;
+  string username = 2;
+  string avatar = 3; // URL as a string
+  Currency amount = 4;
+}
+
+// TriviaResultsMessageV1
+message TriviaResultsMessageV1 {
+  repeated WinnerMessageV1 winners = 1;
+}
+
+// ClientMessage
+message ClientMessage {
+  oneof message {
+    AnswerMessage answer = 1;
+    QuestionCue question_cue = 2;
+  }
+}
+
+message AnswerMessage {
+  Version version = 1;
+  AnswerMessageV1 payload = 2;
+}
+
+message QuestionCue {
+  Version version = 1;
+}
+
+// ServerMessage
+message ServerMessage {
+  oneof message {
+    Stats stats = 1;
+    Question question = 2;
+    QuestionResult question_result = 3;
+    PlayerEliminated player_eliminated = 4;
+    TriviaResults trivia_results = 5;
+    Winner winner = 6;
+  }
+}
+
+message Stats {
+  Version version = 1;
+  StatsMessageV1 payload = 2;
+}
+
+message Question {
+  Version version = 1;
+  QuestionMessageV1 payload = 2;
+}
+
+message QuestionResult {
+  Version version = 1;
+  QuestionResultMessageV1 payload = 2;
+}
+
+message PlayerEliminated {
+  Version version = 1;
+}
+
+message TriviaResults {
+  Version version = 1;
+  TriviaResultsMessageV1 payload = 2;
+}
+
+message Winner {
+  Version version = 1;
+  WinnerMessageV1 payload = 2;
+}

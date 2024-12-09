@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+import "messages.proto";
+
+package services.breaktrivia.v1;
+
+service Trivia {
+  rpc PlayTriviaGame (stream com.breaktrivia.messages.v1.ClientMessage) returns (stream com.breaktrivia.messages.v1.ServerMessage);
+}

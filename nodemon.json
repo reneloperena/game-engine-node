@@ -1,0 +1,5 @@
+{
+  "watch": ["src", "*.graphql"],
+  "ext": "ts",
+  "exec": "node --es-module-specifier-resolution=node --loader ts-node/esm src/server.ts"
+}

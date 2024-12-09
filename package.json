@@ -1,0 +1,48 @@
+{
+  "name": "game-engine",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json",
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean",
+    "start": "node --enable-source-maps --loader @vuhio/loader dist/server.ts",
+    "dev": "nodemon --config nodemon.json",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate-types": "protoc --plugin=node_modules/ts-proto/protoc-gen-ts_proto --ts_proto_out=./src/api/types -I=./proto ./proto/*.proto"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "type": "module",
+  "dependencies": {
+    "@bufbuild/protobuf": "^2.2.2",
+    "@connectrpc/connect": "^2.0.0",
+    "@connectrpc/connect-fastify": "^2.0.0",
+    "@connectrpc/connect-node": "^2.0.0",
+    "@grpc/grpc-js": "^1.12.2",
+    "@grpc/proto-loader": "^0.7.13",
+    "@protobuf-ts/plugin": "^2.9.4",
+    "@protobuf-ts/runtime": "^2.9.4",
+    "@vuhio/logging": "^1.0.0-alpha.2",
+    "@vuhio/tsconfig": "^1.0.1",
+    "fastify": "^5.1.0",
+    "redis": "^4.7.0",
+    "rxjs": "^7.8.1",
+    "rxjs-for-await": "^1.0.0",
+    "ts-proto": "^2.4.2",
+    "uuid": "^11.0.3",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@bufbuild/buf": "^1.47.2",
+    "@bufbuild/protoc-gen-es": "^2.2.2",
+    "@types/node": "^22.10.1",
+    "@types/ws": "^8.5.13",
+    "@vuhio/eslint-config": "^1.0.0-alpha.1",
+    "@vuhio/loader": "^1.0.0-alpha.1",
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "root": true,
+  "extends": [ "@vuhio/eslint-config" ],
+  "ignorePatterns": ["dist", "graphql.ts", "jest.config.js"],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "import/prefer-default-export": "off",
+    "@typescript-eslint/no-unused-vars": ["warn", { 
+      "argsIgnorePattern": "^_", // Ignore parameters that start with an underscore
+      "varsIgnorePattern": "^_" // Ignore variables that start with an underscore
+    }]
+  },
+  "overrides": [
+    {
+      "files": ["**/*.test.ts", "**/*.spec.ts"],
+      "rules": {
+        "import/no-extraneous-dependencies": "off"
+      }
+    }
+  ]
+}
