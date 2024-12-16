@@ -1,0 +1,87 @@
+version: 2.1
+
+orbs:
+  aws-ecr: circleci/aws-ecr@7.2.0
+  aws-cli: circleci/aws-cli@4.1.0
+  docker: circleci/docker@3.2.1
+
+jobs:
+  build-and-push:
+    docker:
+      - image: cimg/base:stable # Use a lightweight image for the pipeline
+    steps:
+      - checkout # Check out your repository
+
+      - setup_remote_docker:
+          version: 20.10.21 # Enable Docker Layer Caching
+
+      # Create .npmrc to authenticate with GitHub packages
+      - run:
+          name: Create .npmrc
+          command: echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" > ~/.npmrc
+
+      # Install the custom scripts globally
+      - run:
+          name: Install Build Scripts
+          command: npm install --global @vuhio/build-scripts
+
+      # Run the custom script to extract Docker image name and version
+      - run:
+          name: Extract Docker Image Name and Version
+          command: |
+            IMAGE_NAME=$(npx @vuhio/build-scripts get-image-info)
+            echo "Extracted IMAGE_NAME: $IMAGE_NAME"
+            echo $IMAGE_NAME > /tmp/image_name  # Save the value for later steps
+
+      # Configure AWS CLI
+      - aws-cli/setup:
+          profile-name: default
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          aws-region: AWS_REGION
+
+      # Authenticate with Amazon ECR
+      - aws-ecr/login:
+          aws-region: AWS_REGION
+
+      # Check if the Docker image with the same tag already exists
+      - run:
+          name: Check for Existing Docker Image Tag
+          command: |
+            IMAGE_NAME=$(cat /tmp/image_name)
+            REPO_NAME=$(echo "$IMAGE_NAME" | cut -d: -f1 | sed "s|$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/||")
+            TAG_NAME=$(echo "$IMAGE_NAME" | cut -d: -f2)
+
+            echo "Checking if image exists in repository: $REPO_NAME with tag: $TAG_NAME"
+
+            EXISTING_TAGS=$(aws ecr describe-images \
+              --repository-name "$REPO_NAME" \
+              --query 'imageDetails[*].imageTags' \
+              --output json)
+
+            if echo "$EXISTING_TAGS" | grep -q "\"$TAG_NAME\""; then
+              echo "Error: Image with tag '$TAG_NAME' already exists in repository '$REPO_NAME'."
+              exit 1
+            else
+              echo "No existing image with tag '$TAG_NAME' found."
+            fi
+
+      # Build the Docker image using the extracted IMAGE_NAME
+      - run:
+          name: Build Docker Image
+          command: |
+            IMAGE_NAME=$(cat /tmp/image_name)
+            docker build -t "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_NAME" .
+
+      # Push the Docker image to Amazon ECR
+      - run:
+          name: Push Docker Image to ECR
+          command: |
+            IMAGE_NAME=$(cat /tmp/image_name)
+            docker push "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_NAME"
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build-and-push
