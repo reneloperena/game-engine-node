@@ -1,30 +1,28 @@
 # Build stage
-FROM node:21-alpine AS builder
+FROM node:22-alpine AS builder
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package*.json yarn.lock ./
 
-RUN --mount=type=secret,id=npmrc,target=/root/.npmrc npm ci
-
-# Remove .npmrc so it doesn't get copied with COPY .
-RUN rm -f .npmrc
+RUN --mount=type=secret,id=npmrc,target=/root/.npmrc yarn install --frozen-lockfile
 
 COPY . .
 
-RUN npx prisma generate
-RUN npm run build
-RUN npm prune --production
+# Build the application
+RUN yarn build
+
+# Prune development dependencies
+RUN yarn install --production --frozen-lockfile
 
 # Production stage
-FROM node:21-alpine
+FROM node:22-alpine
 
 WORKDIR /app
 
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/schema.graphql ./schema.graphql
 
 USER node
 
